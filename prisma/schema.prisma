@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// model User {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   email     String   @unique
+//   name      String?
+// }
+
+// model Address {
+//   id              Int    @id @default(autoincrement())
+//   townCode        Int
+//   townName        String
+//   subDistrictCode Int
+//   subDistrictName String
+//   districtCode    Int
+//   districtName    String
+//   stateCode       Int
+//   stateName       String
+//   countryCode     Int
+//   locationAddress String
+//   wardNumber      Int
+//   postalCode      String
+// }
+
+// model Login {
+//   id       Int    @id @default(autoincrement())
+//   userName String
+//   password String
+// }
+
+// model LoginUserModel {
+//   Id       Int     @id @default(autoincrement())
+//   PersonId Int?
+//   LoginId  String? @db.VarChar(100)
+//   Password String? @db.VarChar(100)
+//   Saltkey  String? @db.VarChar(100)
+// }
+
+model users {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  fullName    String
+  dateOfBirth String
+  age         Int?
+  email       String   @unique
+  username    String   @unique
+  password    String?
+  mobileNo    String
+  admin       roles?   @default(False)
+  student     roles?   @default(False)
+  employer    roles?   @default(False)
+  Status      status?  @default(Active)
+}
+
+enum roles {
+  True
+  False
+}
+
+enum status {
+  Active
+  Inactive
+}
+
+model jobCategories {
+  id         Int    @id @default(autoincrement())
+  categories String
+  industries String
+}
